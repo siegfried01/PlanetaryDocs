@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.IO;
 using PlanetaryDocs.Domain;
 using PlanetaryDocsLoader;
+using System.Linq;
+
+//args = Environment.GetCommandLineArgs();
 
 // path to repository
 const string DocsPath = @"..\..\..\..";// @"C:\path\to\aspnetcore.docs";
@@ -26,11 +29,21 @@ if (!testsOnly && !Directory.Exists(DocsPath))
 }
 
 List<Document> docsList = null;
+if (args is null || args.Length == 0)
+{
+    args = new string[] { "load", "test" };
+}
 
+if(args.Contains("load"))
 if (!testsOnly)
 {
     var filesToParse = FileSystemParser.FindCandidateFiles(Path.GetFullPath(DocsPath));
     docsList = MarkdownParser.ParseFiles(filesToParse);
 }
 
-await CosmosLoader.LoadDocumentsAsync(docsList, EndPoint, AccessKey);
+
+
+await CosmosLoader.LoadDocumentsAsync(docsList, EndPoint, AccessKey, args);
+
+Console.Write("any key to exit:");
+Console.ReadKey();

@@ -28,7 +28,8 @@ namespace PlanetaryDocsLoader
         public static async Task LoadDocumentsAsync(
             IEnumerable<Document> docsList,
             string endPoint,
-            string accessKey)
+            string accessKey,
+            string[]actions)
         {
             Console.WriteLine("Initializing database...");
 
@@ -90,16 +91,19 @@ namespace PlanetaryDocsLoader
             }
 
             Console.WriteLine("The way has been prepared.");
-            Console.WriteLine("Running tests...");
 
-            await TestLoadDocumentAsync(service, uid);
-            await TestUpdateDocumentAsync(service, uid, alias, altAlias);
-            await TestSearchTagsAsync(service, tag);
-            await TestSearchAuthorsAsync(service, alias);
-            await TestQueryAsync(service, tag, alias, text);
-            var auditId = await TestDeleteDocumentAsync(service, uid);
-            await TestRestoreDocumentAsync(service, auditId, uid);
+            if (actions.Contains("test"))
+            {
+                Console.WriteLine("Running tests...");
 
+                await TestLoadDocumentAsync(service, uid);
+                await TestUpdateDocumentAsync(service, uid, alias, altAlias);
+                await TestSearchTagsAsync(service, tag);
+                await TestSearchAuthorsAsync(service, alias);
+                await TestQueryAsync(service, tag, alias, text);
+                var auditId = await TestDeleteDocumentAsync(service, uid);
+                await TestRestoreDocumentAsync(service, auditId, uid);
+            }
             Console.WriteLine("All done!");
         }
 

@@ -15,7 +15,7 @@ namespace PlanetaryDocs.DataAccess
     /// <summary>
     /// <see cref="DbContext"/> implementation for Planetary Docs.
     /// </summary>
-    public sealed class DocsContext : DbContext
+    public /*sealed*/ class DocsContext : DbContext
     {
         /// <summary>
         /// Name of the partition key shadow property.
@@ -157,6 +157,7 @@ namespace PlanetaryDocs.DataAccess
         /// <param name="modelBuilder">The API for model configuration.</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //System.Diagnostics.Debugger.Break();
             modelBuilder.Entity<DocumentAudit>()
                 .HasNoDiscriminator()
                 .ToContainer(nameof(Audits))

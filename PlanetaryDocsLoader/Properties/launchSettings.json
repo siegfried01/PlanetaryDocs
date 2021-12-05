@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PlanetaryDocsLoader": {
+      "commandName": "Project",
+      "commandLineArgs": "test"
+    }
+  }
+}
