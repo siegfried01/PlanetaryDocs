@@ -5,7 +5,7 @@ uid: 2cd33764-11ad-4d15-9264-cf923954798c
 description: Guidelines on contributing to the Planetary docs project
 ms.author: @Mr_Microsoft
 ms.date: 08/22/2022
-no-loc: [feedback], [dicusssions], [bugs], [feature requesets], [contributing]
+no-loc: [feedback], [dicusssions], [bugs], [feature requesets], [contributing], [conduct]
 ---
 
 
